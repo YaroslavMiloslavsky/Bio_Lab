@@ -5,6 +5,12 @@
 - Install pip 
     - If you are on GNU/Linux use 'sudo apt install python3-pip'
     - If you are on Windows it should already be installed, if not, use google
+- (Optional) Install and configure virtual environment:
+    - In the terminal execute
+    - 'pip install virtualenv'
+    - virtualenv [name-of-your-environment]
+    - To activate execute 'source [name-of-your-environment]/Scripts/activate
+    - To deactivate simply execute 'deactivate'
 - Copy the repository with 'git clone https://github.com/YaroslavMiloslavsky/Bio_Lab.git' or just download the ZIP file
 - Run 'pip install -r requirements.txt' or pip3 if you are using Linux
 
