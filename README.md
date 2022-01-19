@@ -2,7 +2,11 @@
  This is a fan project so don't take any of that too serious, although our goal is to get pretty close simulation to the real life processes that are done by a computer
 ### Installation process
 - Ensure that Python version 3.7 or greater is installed
+- Install pip 
+    - If you are on GNU/Linux use 'sudo apt install python3-pip'
+    - If you are on Windows it should already be installed, if not, use google
 - Copy the repository with 'git clone https://github.com/YaroslavMiloslavsky/Bio_Lab.git' or just download the ZIP file
+- Run 'pip install -r requirements.txt' or pip3 if you are using Linux
 
 
 ### Running the file

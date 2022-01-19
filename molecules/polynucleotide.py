@@ -1,4 +1,4 @@
-from molecules.molecule import Molecule
+from molecules.base.molecule import Molecule
 
 
 class Polynucleotide(Molecule):
@@ -6,7 +6,7 @@ class Polynucleotide(Molecule):
         Even though this class is pretty self explanatory, notice that this class uses encapsulation heavily, in order to simulate real life molecules'''
     def __init__(self) -> None:
         super().__init__(0)
-        self._nucleotides = []
+        self._nucleotides = [] # This should be a separate class
         self.direction = (5,3) # A tuple 3-5 or 5-3 and read 5 --> 3
 
     def asses_length(self):

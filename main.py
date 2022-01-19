@@ -1,28 +1,62 @@
 from biolab import BioLab
 from molecules.dna import DNA
+from termcolor import colored
+import os
+
+'''This is a prototype of a CLI to come'''
+
+def choice_bio_lab():
+    print(colored('Coming soon', 'red'))
+
+def choice_dna_test_tube():
+    print(colored('Select an option below','green'))
+    print(colored('1 - DNA replication', 'blue'))
+    print(colored('2 - Soon ...', 'red'))
+    choice = int(input('Selected Option: '))
+    
+    try:
+        dna_test_tube_choices(choice=choice)
+    except KeyError:
+        print('Please select a valid choice')
+
+def dna_test_replicate():
+    size = int(input('Choose the size of the dna: '))
+    dna = DNA(size)
+    dna.replicate()
+
+def dna_test_soon():
+    print('Coming soon')
+
+def choice_selection(choice):
+    return {
+        1: lambda: choice_bio_lab(),
+        2: lambda: choice_dna_test_tube(),
+    }[choice]()
+
+def dna_test_tube_choices(choice):
+    return{
+        1: lambda: dna_test_replicate(),
+        2: lambda: dna_test_soon(),
+    }[choice]()
 
 def main():
-    print('Welcome to the BioLab v0.1.1')
-    print('Choose the functionality:')
-    print('1 - BioLab (Soon)')
-    print('2 - DNA functions test')
+    os.system('clear')
+    os.system('cls')
+    print(colored('Welcome to the BioLab v0.1.1','green'))
+    print(colored('Choose the functionality:', 'green'))
 
-    choice = int(input('***Select and option: '))
+    while True:
+        print(colored('1 - BioLab (Soon)','red'))
+        print(colored('2 - DNA functions test','blue'))
 
-    if choice == 1:
-        print('Coming soon')
-    if choice == 2:
-        size = int(input('Choose the size of the dna: '))
-        dna = DNA(size)
-        print('Choose a function to test')
-        print('1 - replicate')
+        print()
+        choice = int(input(colored('Selected Option: ', 'green')))
+        try:
+            choice_selection(choice=choice)
+        except KeyError:
+            print('Please select a valid choice')
+        
 
-        option = int(input('***Select and option: '))
-        if option == 1:
-            print(dna)
-            dna.replicate()
-
-'''TODO Implement statistics!!'''
 
 if __name__ == '__main__':
     main()

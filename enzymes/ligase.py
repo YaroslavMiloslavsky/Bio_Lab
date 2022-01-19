@@ -1,4 +1,4 @@
-from enzymes.enzyme import Enzyme
+from enzymes.base.enzyme import Enzyme
 
 class Ligase(Enzyme):
     '''This class represents a ligase enzyme to repair breaks in DNA strands '''

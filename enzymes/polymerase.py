@@ -1,4 +1,4 @@
-from enzymes.enzyme import Enzyme
+from enzymes.base.enzyme import Enzyme
 
 
 class Polymerase(Enzyme):

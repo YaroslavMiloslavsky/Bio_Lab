@@ -1,7 +1,7 @@
 import random
 from enzymes.ligase import Ligase
 from enzymes.polymerase import Polymerase
-from molecules.molecule import Molecule
+from molecules.base.molecule import Molecule
 from molecules.polynucleotide import Polynucleotide
 from enzymes.primase import Primase
 

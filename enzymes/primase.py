@@ -1,4 +1,4 @@
-from enzymes.enzyme import Enzyme
+from enzymes.base.enzyme import Enzyme
 
 class Primase(Enzyme):
     '''This class represents the enzyme that lays foundation to the strand replication and repair proccesses'''
