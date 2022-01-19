@@ -1,9 +1,9 @@
-'''AKA strand of a DNA'''
 from molecules.molecule import Molecule
 
 
 class Polynucleotide(Molecule):
-    
+    '''AKA strands of a DNA - The polynucleotide in made of nucleotides which define the weight of the gene
+        Even though this class is pretty self explanatory, notice that this class uses encapsulation heavily, in order to simulate real life molecules'''
     def __init__(self) -> None:
         super().__init__(0)
         self._nucleotides = []
@@ -14,6 +14,7 @@ class Polynucleotide(Molecule):
         return len(self._nucleotides)
 
     def add(self, base):
+        '''As the class name, this class adds the new element into the the gene sequence'''
         self._nucleotides.append(base)
 
     def index(self, i):

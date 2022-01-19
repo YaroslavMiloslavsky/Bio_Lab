@@ -4,8 +4,9 @@ from molecules.molecule import Molecule
 from molecules.polynucleotide import Polynucleotide
 from enzymes.primase import Primase
 
-''' DNA has the connections A-T and C-G'''
-class DNA(Molecule):  
+
+class DNA(Molecule):
+    ''' DNA has the connections A-T and C-G'''  
     bases = {'A','C','T','G'}
     _first_polynucleotide = None
     _second_polynucleotide = None
@@ -46,10 +47,11 @@ class DNA(Molecule):
             
             self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
 
-    '''There is a better way of implementing this, however,
-         there are only 4 bases so we will keep it that way for now'''
+    
     @classmethod
     def complete_base_pair(cls, first_base):
+        '''There is a better way of implementing this, however,
+         there are only 4 bases so we will keep it that way for now'''
         if first_base == 'A':
             return 'T'
         elif first_base == 'T':
@@ -61,7 +63,12 @@ class DNA(Molecule):
         else:
             raise ValueError(f'{first_base} is not a common base')
     
+    
     def replicate(self):
+        '''The method simulates the netural process of DNA replication,
+        in the end we will have a tuple with 2 exact copies of the DNA'''
+
+        '''Unlike the natural process of replication, the helicase unzips the genes procedurally'''
         leading_strand = self.helicase(self.sequence, 0) # 5-3
         lagging_strand = self.helicase(self.sequence, 1) # 3-5
         # print(upper_strand,'AND' ,lagging_strand)
@@ -103,13 +110,16 @@ class DNA(Molecule):
         print('\nLagging strand after polymerease')
         polymerase = Polymerase()
         replica_two_DNA = polymerase.fully_connect(strand=lower_strand_DNA, primes=self._second_polynucleotide.direction)
+        '''After this fragment, the Exonuclease enzyme should remove the Okazaki fragments RNA leftovers
+            and the gaps are being filled with a Polymaraease followed by the DNA Ligase which gives the DNA its form'''
         print(replica_two_DNA)
 
         return (replica_one_DNA, replica_two_DNA)
 
-    '''This is the enzyme that unzips the DNA into 2 strands'''
+    
     @classmethod
     def helicase(cls, seq ,index):
+        '''This is the enzyme that unzips the DNA into 2 strands AKA replication fork proccess'''
         strand = []
         for i in seq:
             i = list(i)

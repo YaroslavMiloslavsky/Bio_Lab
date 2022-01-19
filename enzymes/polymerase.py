@@ -1,11 +1,15 @@
+from enzymes.enzyme import Enzyme
 
 
-class Polymerase:
-
+class Polymerase(Enzyme):
+    '''This class represents the enzyme that is in charge of constructing the DNA after it has been unzipped by a Helicase'''
     def __init__(self) -> None:
         pass
     
     def fully_connect(self, strand, primes):
+        '''After the foundation has been laid this enzyme will connect the rest of the nucleotides
+            if the direction of the primar is 5 --> 3, the process will continue as usual
+            if the direction of the primar is 3 --> 5, the polymerase will seek connected primars and fill the gaps backwards'''
         from molecules.dna import DNA
         if primes == (5,3):
             for i in range(len(strand)):
