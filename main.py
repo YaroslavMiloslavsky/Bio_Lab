@@ -25,6 +25,6 @@ def main():
 '''TODO Implement statistics!!'''
 
 if __name__ == '__main__':
-    # main()
-    dna = DNA(20)
-    dna.replicate()
+    main()
+    # dna = DNA(20)
+    # dna.replicate()
