@@ -16,14 +16,14 @@ class Polymerase(Enzyme):
                 if len(strand[i])>1:
                     continue
                 else:
-                    strand[i].append(DNA.complete_base_pair(list(strand[i])[0]))
+                    DNA.random_base_pair(strand=strand, index=i)
             return DNA(strand=strand)
         else:  # This does exactly what a polymerase does to a strand 3->5 
             for i in range(len(strand)):
                 if len(strand[i])<2:
                     j=i
                     while len(strand[j])<2 and j>=0:
-                        strand[j].append(DNA.complete_base_pair(list(strand[j])[0]))
+                        DNA.random_base_pair(strand=strand, index=j)
                         j -= 1
                 else:
                     continue

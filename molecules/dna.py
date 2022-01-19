@@ -1,4 +1,5 @@
 import random
+from enzymes.ligase import Ligase
 from enzymes.polymerase import Polymerase
 from molecules.molecule import Molecule
 from molecules.polynucleotide import Polynucleotide
@@ -30,7 +31,7 @@ class DNA(Molecule):
                 self._second_polynucleotide.add(second_base)
 
                 self.sequence.append([first_base, second_base])
-        
+
             self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
         else:
             super().__init__(sequence_length)
@@ -51,7 +52,8 @@ class DNA(Molecule):
     @classmethod
     def complete_base_pair(cls, first_base):
         '''There is a better way of implementing this, however,
-         there are only 4 bases so we will keep it that way for now'''
+         there are only 4 bases so we will keep it that way for now
+         This is deterministic function which will always return the right choice'''
         if first_base == 'A':
             return 'T'
         elif first_base == 'T':
@@ -82,37 +84,39 @@ class DNA(Molecule):
         upper_strand_DNA = primase.connect()
         # Lets test the new sequence
         print('Leading strand after primase')
-        for i in upper_strand_DNA:
-            i = list(i)
-            if len(i)>1:
-                print(f'{i[0]} - {i[1]}')
-            else:
-                print(f'{i[0]} - ')
+        self.print_strand(upper_strand_DNA)
         # The Polymerase continues from here until the end
         print('\nLeading strand after polymerease')
         polymerase = Polymerase()
         replica_one_DNA = polymerase.fully_connect(strand=upper_strand_DNA, primes=self._first_polynucleotide.direction)
         # Lets test the new sequence
+        print('Before ligation')
         print(replica_one_DNA)
+        print('Ligation process')
+        Ligase.repair_strand(dna=replica_one_DNA, first_index=0, last_index=int(replica_one_DNA.length/2))
+        print('\nfinal first replication of DNA:\n',replica_one_DNA)
 
         '''Now we deal with the lagging strand'''
         primase = Primase(strand=lagging_strand, primar_length=4, direction=self._second_polynucleotide.direction)
         lower_strand_DNA = primase.connect()
+
         # Lets test the new sequence
         print('Lagging strand after primase')
-        for i in lower_strand_DNA:
-            i = list(i)
-            if len(i)>1:
-                print(f'{i[0]} - {i[1]}')
-            else:
-                print(f'{i[0]} - ')
+        self.print_strand(lower_strand_DNA)
          # The Polymerase continues from here until the end
         print('\nLagging strand after polymerease')
         polymerase = Polymerase()
         replica_two_DNA = polymerase.fully_connect(strand=lower_strand_DNA, primes=self._second_polynucleotide.direction)
+        print('After replicating the lagging strand we have',replica_two_DNA)
+
         '''After this fragment, the Exonuclease enzyme should remove the Okazaki fragments RNA leftovers
             and the gaps are being filled with a Polymaraease followed by the DNA Ligase which gives the DNA its form'''
-        print(replica_two_DNA)
+        '''I've implemented the ligation proccess which double checks the structure'''
+
+        print('Ligation process')
+        Ligase.repair_strand(dna=replica_two_DNA, first_index=0, last_index=int(replica_two_DNA.length/2))
+        
+        print('\nfinal second replication of DNA:\n',replica_two_DNA)
 
         return (replica_one_DNA, replica_two_DNA)
 
@@ -125,6 +129,22 @@ class DNA(Molecule):
             i = list(i)
             strand.append(i[index])
         return strand
+
+    @classmethod
+    def print_strand(cls, strand):
+        for i in strand:
+            i = list(i)
+            if len(i)>1:
+                print(f'{i[0]} - {i[1]}')
+            else:
+                print(f'{i[0]} - ')
+    
+    @classmethod
+    def random_base_pair(cls, strand, index):
+        if random.random()>0.95:
+            strand[index].append(DNA.complete_base_pair(list(strand[index])[0]))
+        else:
+            strand[index].append(random.sample(DNA.bases, 1)[0])
 
     def __str__(self):
         print('strands - ',self._first_polynucleotide, self._second_polynucleotide)
