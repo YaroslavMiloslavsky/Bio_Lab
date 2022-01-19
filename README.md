@@ -2,7 +2,7 @@
  This is a fan project so don't take any of that too serious, although our goal is to get pretty close simulation to the real life processes that are done by a computer
 ### Installation process
 - Ensure that Python version 3.7 or greater is installed
-- Pretty much all for now
+- Copy the repository with 'git get' or just download the ZIP file
 
 
 ### Running the file
