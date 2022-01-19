@@ -10,6 +10,7 @@ def choice_bio_lab():
 
 def choice_dna_test_tube():
     print(colored('Select an option below','green'))
+    print(colored('0 - Return', 'blue'))
     print(colored('1 - DNA replication', 'blue'))
     print(colored('2 - Soon ...', 'red'))
     choice = int(input('Selected Option: '))
@@ -27,25 +28,29 @@ def dna_test_replicate():
 def dna_test_soon():
     print('Coming soon')
 
+def exit():
+    os._exit(status=0)
+
+
 def choice_selection(choice):
     return {
+        0: lambda: exit(),
         1: lambda: choice_bio_lab(),
         2: lambda: choice_dna_test_tube(),
     }[choice]()
 
 def dna_test_tube_choices(choice):
     return{
+        0: lambda: main_loop(),
         1: lambda: dna_test_replicate(),
         2: lambda: dna_test_soon(),
     }[choice]()
 
-def main():
+def main_loop():
     os.system('clear')
     os.system('cls')
-    print(colored('Welcome to the BioLab v0.1.1','green'))
-    print(colored('Choose the functionality:', 'green'))
-
     while True:
+        print(colored('0 - Exit', 'blue'))
         print(colored('1 - BioLab (Soon)','red'))
         print(colored('2 - DNA functions test','blue'))
 
@@ -55,8 +60,14 @@ def main():
             choice_selection(choice=choice)
         except KeyError:
             print('Please select a valid choice')
-        
 
+def main():
+    os.system('clear')
+    os.system('cls')
+    print(colored('Welcome to the BioLab v0.1.1','green'))
+    print(colored('Choose the functionality:', 'green'))
+
+    main_loop()
 
 if __name__ == '__main__':
     main()
