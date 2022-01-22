@@ -77,14 +77,10 @@ if __name__ == '__main__':
     os.system('clear')
     os.system('cls')
 
-    dna1 = DNA(9, strand=None)
-    dna2 = DNA(10, strand=None)
-    dna3 = DNA(7, strand=None)
-
-
-    test_tube = Dna_Test_Tube([dna1, dna2, dna3])
-    test_tube.length_sort()
-    
-    print(test_tube)
+    dna1 = DNA(sequence_length=10)
+    print(dna1)
+    a, b = dna1.replicate()
+    print('replica 1:',a)
+    print('replica 2:',b)
 
 

@@ -6,7 +6,6 @@ class Dna_Test_Tube:
     Attributes:
         dna_array: The array of DNAs in the tube
     """
-    _dna_array = []
 
     def __init__(self, dna_array):
         self._dna_array = dna_array
@@ -20,7 +19,7 @@ class Dna_Test_Tube:
 
     def length_sort(self):
         """
-        The function to mimic the Gel Electrophoresis function.
+        The function to mimics the Gel Electrophoresis process.
         """
         self._dna_array =  sorted(
             self._dna_array,
@@ -30,5 +29,14 @@ class Dna_Test_Tube:
 
     def dna_in_tube(self):
         return self._dna_array
+
+    def amplify(self, sequence):
+        """
+        The function to mimics the PCR process.
+
+        Attributes:
+        sequence: The sequence we want to amplify
+        """
+        pass
 
 

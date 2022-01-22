@@ -39,7 +39,7 @@ class DNA(Molecule):
                 self._first_polynucleotide.add(i[0])
                 self._second_polynucleotide.add(i[1])
                     
-        self.length = int((self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length())/2)
+        self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
 
     
     @classmethod
