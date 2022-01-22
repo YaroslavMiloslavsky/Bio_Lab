@@ -15,7 +15,7 @@ class DNA(Molecule):
         super().__init__(sequence_length)
         self._first_polynucleotide = Polynucleotide()
         self._second_polynucleotide = Polynucleotide()
-        self.sequence = []
+        self.sequence = [] # list ot pairs of lists
 
         if sequence_length>0:
             self._first_polynucleotide.set_primes(5,3) # Upper one is from left to right
@@ -41,6 +41,13 @@ class DNA(Molecule):
                     
         self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
 
+    def __str__(self):
+        print('strands - ',self._first_polynucleotide, self._second_polynucleotide)
+        dna_sequence = 'DNA Sequence:\n'
+        for i in self.sequence:
+            i = list(i)
+            dna_sequence += f'{i[0]} - {i[1]}\n'
+        return dna_sequence
     
     @classmethod
     def complete_base_pair(cls, first_base):
@@ -59,20 +66,21 @@ class DNA(Molecule):
         else:
             raise ValueError(f'{first_base} is not a common base')
 
-    
+    def get_strands(self):
+        return (self._first_polynucleotide, self._second_polynucleotide)
     
     def replicate(self):
         '''The method simulates the netural process of DNA replication,
         in the end we will have a tuple with 2 exact copies of the DNA'''
 
-        '''Unlike the natural process of replication, the helicase unzips the genes procedurally'''
+        #Unlike the natural process of replication, the helicase unzips the genes procedurally
         leading_strand = self.helicase(self.sequence, 0) # 5-3
         lagging_strand = self.helicase(self.sequence, 1) # 3-5
         # print(upper_strand,'AND' ,lagging_strand)
 
-        '''In the nature all of these processes are parallel, alas,
-            had I had the programming skill which I lack I would implement this with threads'''
-        '''First we deal with the leading strand'''
+        # In the nature all of these processes are parallel, alas,
+        # had I had the programming skill which I lack I would implement this with threads
+        # First we deal with the leading strand
         # The primer is being selected -> TODO dynamic
         primase = Primase(strand=leading_strand, primar_length=4, direction=self._first_polynucleotide.direction)
         # The primase synthesize few connections
@@ -142,13 +150,7 @@ class DNA(Molecule):
             strand[index].append(random.sample(DNA.bases, 1)[0])
     
 
-    def __str__(self):
-        print('strands - ',self._first_polynucleotide, self._second_polynucleotide)
-        dna_sequence = 'DNA Sequence:\n'
-        for i in self.sequence:
-            i = list(i)
-            dna_sequence += f'{i[0]} - {i[1]}\n'
-        return dna_sequence
 
-        # return f'strands - {self._first_polynucleotide}, {self._second_polynucleotide} \n'
+
+    
 

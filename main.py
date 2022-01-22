@@ -77,10 +77,20 @@ if __name__ == '__main__':
     os.system('clear')
     os.system('cls')
 
-    dna1 = DNA(sequence_length=10)
-    print(dna1)
-    a, b = dna1.replicate()
-    print('replica 1:',a)
-    print('replica 2:',b)
+    
+    dna1 = DNA(25)
+    # print(dna1)
+    seq = ['T','T']
+
+    test_tube = Dna_Test_Tube(single_dna=dna1)
+    # test_tube.amplify(sequence=seq)
+
+    tube = []
+    test_tube.pcr(sequence=seq, revolutions=8, tube=tube)
+    print(len(tube))
+    for i in tube:
+        if i.length > 1:
+            print(i)
+    
 
 
