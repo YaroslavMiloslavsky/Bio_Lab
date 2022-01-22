@@ -9,17 +9,15 @@ from enzymes.primase import Primase
 class DNA(Molecule):
     ''' DNA has the connections A-T and C-G'''  
     bases = {'A','C','T','G'}
-    _first_polynucleotide = None
-    _second_polynucleotide = None
-    sequence = [] # list of list pairs
 
     '''The constructor will generate random legal sequence'''
     def __init__(self, sequence_length=0, strand=None):
-        if sequence_length>0:
-            super().__init__(sequence_length)
-            self._first_polynucleotide = Polynucleotide()
-            self._second_polynucleotide = Polynucleotide()
+        super().__init__(sequence_length)
+        self._first_polynucleotide = Polynucleotide()
+        self._second_polynucleotide = Polynucleotide()
+        self.sequence = []
 
+        if sequence_length>0:
             self._first_polynucleotide.set_primes(5,3) # Upper one is from left to right
             self._second_polynucleotide.set_primes(3,5) # Buttom one is from right to left
 
@@ -31,22 +29,17 @@ class DNA(Molecule):
                 self._second_polynucleotide.add(second_base)
 
                 self.sequence.append([first_base, second_base])
-
-            self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
         else:
-            super().__init__(sequence_length)
             self.sequence = strand
             self.length = len(list(self.sequence))
-            self._first_polynucleotide = Polynucleotide()
-            self._second_polynucleotide = Polynucleotide()
 
             self._first_polynucleotide.set_primes(5,3) # Upper one is from left to right
             self._second_polynucleotide.set_primes(3,5) # Buttom one is from right to left
             for i in self.sequence:
                 self._first_polynucleotide.add(i[0])
                 self._second_polynucleotide.add(i[1])
-            
-            self.length = self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length()
+                    
+        self.length = int((self._first_polynucleotide.asses_length() + self._second_polynucleotide.asses_length())/2)
 
     
     @classmethod
@@ -54,6 +47,7 @@ class DNA(Molecule):
         '''There is a better way of implementing this, however,
          there are only 4 bases so we will keep it that way for now
          This is deterministic function which will always return the right choice'''
+
         if first_base == 'A':
             return 'T'
         elif first_base == 'T':
@@ -64,6 +58,7 @@ class DNA(Molecule):
             return 'C'
         else:
             raise ValueError(f'{first_base} is not a common base')
+
     
     
     def replicate(self):
@@ -145,6 +140,7 @@ class DNA(Molecule):
             strand[index].append(DNA.complete_base_pair(list(strand[index])[0]))
         else:
             strand[index].append(random.sample(DNA.bases, 1)[0])
+    
 
     def __str__(self):
         print('strands - ',self._first_polynucleotide, self._second_polynucleotide)
@@ -153,4 +149,6 @@ class DNA(Molecule):
             i = list(i)
             dna_sequence += f'{i[0]} - {i[1]}\n'
         return dna_sequence
+
+        # return f'strands - {self._first_polynucleotide}, {self._second_polynucleotide} \n'
 

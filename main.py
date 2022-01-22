@@ -1,4 +1,4 @@
-from biolab import BioLab
+from biolab import Dna_Test_Tube
 from molecules.dna import DNA
 from termcolor import colored
 import os
@@ -70,6 +70,21 @@ def main():
     main_loop()
 
 if __name__ == '__main__':
-    main()
-    # dna = DNA(20)
-    # dna.replicate()
+    # For production uncomment the function if you wish to use the CLI
+    # main()
+
+    # For testing purpose
+    os.system('clear')
+    os.system('cls')
+
+    dna1 = DNA(9, strand=None)
+    dna2 = DNA(10, strand=None)
+    dna3 = DNA(7, strand=None)
+
+
+    test_tube = Dna_Test_Tube([dna1, dna2, dna3])
+    test_tube.length_sort()
+    
+    print(test_tube)
+
+
