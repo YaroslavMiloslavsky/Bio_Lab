@@ -18,6 +18,6 @@ class Ligase(Enzyme):
             correct_second_strand = DNA.complete_base_pair(first_strand_base)
 
             if second_strand_base != correct_second_strand:
-                print(f'current pair is ({first_strand_base},{second_strand_base}) but should be ({first_strand_base},{correct_second_strand})')
+                # print(f'current pair is ({first_strand_base},{second_strand_base}) but should be ({first_strand_base},{correct_second_strand})')
                 dna.sequence[i][1] = correct_second_strand
             # dna.sequence[i][1] = 'Test'

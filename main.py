@@ -77,20 +77,32 @@ if __name__ == '__main__':
     os.system('clear')
     os.system('cls')
 
-    
-    dna1 = DNA(25)
-    # print(dna1)
-    seq = ['T','T']
+    # Sort
 
-    test_tube = Dna_Test_Tube(single_dna=dna1)
-    # test_tube.amplify(sequence=seq)
+    # PCR 
+    # dna1 = DNA(15)
+    # seq = ['A','G']
 
-    tube = []
-    test_tube.pcr(sequence=seq, revolutions=8, tube=tube)
-    print(len(tube))
-    for i in tube:
-        if i.length > 1:
-            print(i)
+    # test_tube = Dna_Test_Tube(single_dna=dna1)
+    # # test_tube.amplify(sequence=seq)
+
+    # tube = []
+    # test_tube.pcr(sequence=seq, revolutions=8, tube=tube)
+    # print(len(tube))
+    # for i in tube:
+    #     if i.length > 1:
+    #         print(i)
     
+
+    # Extract
+    # dna1 = DNA(20)
+    # dna2 = DNA(10)
+    # dna3 = DNA(12)
+    # seq = 'ACT'
+
+    # test_tube = Dna_Test_Tube(dna_array=[dna1, dna2, dna3])
+    # a = test_tube.extract(seq)
+    # for i in a:
+    #     print(i)
 
 

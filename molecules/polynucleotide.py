@@ -19,6 +19,12 @@ class Polynucleotide(Molecule):
 
     def index(self, i):
         return self._nucleotides[i]
+    
+    def get_sequence(self):
+        seq = ''
+        for n in self._nucleotides:
+            seq += n
+        return seq
 
     def set_primes(self, first_prime, second_prime):
         self.direction = (first_prime, second_prime)

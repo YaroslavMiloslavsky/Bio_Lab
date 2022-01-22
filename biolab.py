@@ -1,4 +1,5 @@
 from types import NoneType
+from enzymes.ligase import Ligase
 from molecules.dna import DNA
 from enzymes.polymerase import Polymerase
 
@@ -51,7 +52,7 @@ class Dna_Test_Tube:
         Dna_Test_Tube(single_dna=b).pcr(sequence=sequence,revolutions=revolutions-1, tube=tube)
 
 
-    def amplify(self, sequence=None):
+    def amplify(self, sequence):
         """
         The function to mimics the PCR process.
 
@@ -141,11 +142,22 @@ class Dna_Test_Tube:
         
         # TODO check a false positive and erase them
 
-   
         dna_upper = DNA(strand=upper_new_sequence)
         dna_lower = DNA(strand=lower_new_sequence)
+
+        ligase = Ligase()
+        ligase.repair_strand(dna=dna_upper, first_index=0,last_index=int(dna_upper.length/2))
+        ligase.repair_strand(dna=dna_lower, first_index=0,last_index=int(dna_lower.length/2))
 
         return [dna_upper, dna_lower]
         
 
+    def extract(self, sequence):
+        extracted_tube = []
+        for dna in self.dna_array:
+            dna_upper, dna_lower = dna.get_strands()
 
+            if sequence in dna_upper.get_sequence() or sequence in dna_lower.get_sequence():
+                extracted_tube.append(dna)
+
+        return extracted_tube
