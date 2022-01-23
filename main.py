@@ -78,6 +78,13 @@ if __name__ == '__main__':
     os.system('cls')
 
     # Sort
+    # dna1 = DNA(14)
+    # dna2 = DNA(23)
+    # dna3 = DNA(7)
+
+    # test_tube = Dna_Test_Tube(dna_array=[dna1, dna2, dna3])
+    # test_tube.length_sort()
+    # print(test_tube)
 
     # PCR 
     # dna1 = DNA(15)
