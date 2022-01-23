@@ -1,6 +1,4 @@
-from tkinter import E
 from enzymes.base.enzyme import Enzyme
-import random
 
 from molecules.dna import DNA
 
@@ -28,16 +26,15 @@ class Restriction(Enzyme):
 
         lower_sequence.append(dna.sequence[first_index])
         for i in range(first_index+1, last_index):
-            lower_sequence.append([dna.sequence[i][0]])
+            lower_sequence.append([dna.sequence[i][0], ' '])
         
         for i in range(first_index+1, last_index):
             upper_sequence.append([' ',dna.sequence[i][1]])
         upper_sequence.append(dna.sequence[last_index])
 
-   
-        DNA.print_strand(strand=lower_sequence)
-        print()
         DNA.print_strand(strand=upper_sequence)
+        print()
+        DNA.print_strand(strand=lower_sequence)
 
         return lower_sequence, upper_sequence
 

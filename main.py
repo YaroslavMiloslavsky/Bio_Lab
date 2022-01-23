@@ -79,13 +79,13 @@ if __name__ == '__main__':
     os.system('cls')
 
     # Restriction Enzymes
-    dna = DNA(15)
-    print(dna)
-    enz = Restriction()
-    # a, b = enz.sticky_ends(dna, 9)
-    a, b = enz.blunt(dna, 5,10)
-    print(a)
-    print(b)
+    # dna = DNA(15)
+    # print(dna)
+    # enz = Restriction()
+    # # a, b = enz.sticky_ends(dna, 9)
+    # a, b = enz.blunt(dna, 5,10)
+    # print(a)
+    # print(b)
 
     # Sort
     # dna1 = DNA(14)
