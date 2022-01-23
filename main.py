@@ -113,3 +113,18 @@ if __name__ == '__main__':
     #     print(i)
 
 
+    # Sequence
+    # single dna
+    dna = DNA(10)
+    test_tube = Dna_Test_Tube(single_dna=dna)
+    a = test_tube.sequence_bases()
+    print(a)
+
+    # dna array
+    dna1 = DNA(15)
+    dna2 = DNA(10)
+    dna3 = DNA(5)
+    test_tube = Dna_Test_Tube(dna_array=[dna1, dna2, dna3])
+    a = test_tube.sequence_bases()
+    print(a)
+

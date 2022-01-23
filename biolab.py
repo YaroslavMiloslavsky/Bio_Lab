@@ -16,7 +16,7 @@ class Dna_Test_Tube:
 
     def __init__(self, dna_array=None, single_dna=None):
         self.dna_array = dna_array if dna_array else []
-        self.single_dna = single_dna
+        self.single_dna = single_dna if single_dna else None
 
     def __str__(self) -> str:
         dna_molecules = ''
@@ -161,3 +161,41 @@ class Dna_Test_Tube:
                 extracted_tube.append(dna)
 
         return extracted_tube
+
+
+    def sequence_bases(self):
+        """
+        The function to mimics the Electric pulse that allows us to know which bases construct our DNA molecule.
+
+        Reactions:
+        A - returns 1 
+        T - returns 2
+        C - returns 3
+        G - returns 4
+        """
+        if self.single_dna != None:
+            return Dna_Test_Tube._single_molecule_sequence(self.single_dna)
+
+        elif self.dna_array != None:
+            bases = []
+            for i in self.dna_array:
+                bases.append(Dna_Test_Tube._single_molecule_sequence(i))
+            return bases
+
+    @classmethod
+    def _electric_shock(cls, base):
+        return{
+            'A': lambda: 0b01,
+            'T': lambda: 0b10,
+            'C': lambda: 0b11,
+            'G': lambda: 0b100
+        }[base]()
+
+    @classmethod
+    def _single_molecule_sequence(cls, dna):
+        bases = {}
+        dna_upper, dna_lower = dna.get_strands()
+        bases['upper_dna'] = [Dna_Test_Tube._electric_shock(i) for i in dna_upper.get_sequence()]
+        bases['lower_dna'] = [Dna_Test_Tube._electric_shock(i) for i in dna_lower.get_sequence()]
+
+        return bases
