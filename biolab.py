@@ -173,10 +173,10 @@ class Dna_Test_Tube:
         C - returns 3
         G - returns 4
         """
-        if self.single_dna != None:
+        if self.single_dna:
             return Dna_Test_Tube._single_molecule_sequence(self.single_dna)
 
-        elif self.dna_array != None:
+        elif self.dna_array:
             bases = []
             for i in self.dna_array:
                 bases.append(Dna_Test_Tube._single_molecule_sequence(i))

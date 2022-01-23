@@ -1,4 +1,5 @@
 from biolab import Dna_Test_Tube
+from enzymes.restriction import Restriction
 from molecules.dna import DNA
 from termcolor import colored
 import os
@@ -77,6 +78,15 @@ if __name__ == '__main__':
     os.system('clear')
     os.system('cls')
 
+    # Restriction Enzymes
+    dna = DNA(15)
+    print(dna)
+    enz = Restriction()
+    # a, b = enz.sticky_ends(dna, 9)
+    a = enz.blunt(dna, 5,10)
+    # print(a)
+    # print(b)
+
     # Sort
     # dna1 = DNA(14)
     # dna2 = DNA(23)
@@ -115,16 +125,16 @@ if __name__ == '__main__':
 
     # Sequence
     # single dna
-    dna = DNA(10)
-    test_tube = Dna_Test_Tube(single_dna=dna)
-    a = test_tube.sequence_bases()
-    print(a)
+    # dna = DNA(10)
+    # test_tube = Dna_Test_Tube(single_dna=dna)
+    # a = test_tube.sequence_bases()
+    # print(a)
 
     # dna array
-    dna1 = DNA(15)
-    dna2 = DNA(10)
-    dna3 = DNA(5)
-    test_tube = Dna_Test_Tube(dna_array=[dna1, dna2, dna3])
-    a = test_tube.sequence_bases()
-    print(a)
+    # dna1 = DNA(15)
+    # dna2 = DNA(10)
+    # dna3 = DNA(5)
+    # test_tube = Dna_Test_Tube(dna_array=[dna1, dna2, dna3])
+    # a = test_tube.sequence_bases()
+    # print(a)
 
