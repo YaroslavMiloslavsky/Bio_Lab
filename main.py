@@ -83,9 +83,9 @@ if __name__ == '__main__':
     print(dna)
     enz = Restriction()
     # a, b = enz.sticky_ends(dna, 9)
-    a = enz.blunt(dna, 5,10)
-    # print(a)
-    # print(b)
+    a, b = enz.blunt(dna, 5,10)
+    print(a)
+    print(b)
 
     # Sort
     # dna1 = DNA(14)

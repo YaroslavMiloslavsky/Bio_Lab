@@ -19,7 +19,8 @@ class Restriction(Enzyme):
     @classmethod
     def blunt(cls, dna, first_index, last_index):
         '''
-        This method is a general simulation of blunt restriction enzyme
+        This method is a general simulation of generic blunt restriction enzyme
+        It seeks no special sequence like a real enzyme does
         '''
 
         upper_sequence = []
